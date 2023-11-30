@@ -92,24 +92,48 @@
             </div>
           </div>
         </div>
+        <div class="mb-3">
+          <div class="col">
+            <div class="form-group inputDnD">
+              <label class="form-label" for="inputFile">Foto KTM</label>
+              <input type="file" class="form-control-file text-primary font-weight-bold text-dark" id="inputFile"
+                accept="aplication/pdf" onchange="readUrl(this)" data-title="Drag and drop a file">
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="col">
+            <div class="form-group inputDnD">
+              <label class="form-label" for="inputFile">Surat bebas tanggungan fakultas</label>
+              <input type="file" class="form-control-file text-primary font-weight-bold text-dark" id="inputFile"
+                accept="aplication/pdf" onchange="readUrl(this)" data-title="Drag and drop a file">
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="col">
+            <div class="form-group inputDnD">
+              <label class="form-label" for="inputFile">Surat bebas perpustakaan</label>
+              <input type="file" class="form-control-file text-primary font-weight-bold text-dark" id="inputFile"
+                accept="aplication/pdf" onchange="readUrl(this)" data-title="Drag and drop a file">
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="col">
+            <div class="form-group inputDnD">
+              <label class="form-label" for="inputFile">Surat pernyataan orang</label>
+              <input type="file" class="form-control-file text-primary font-weight-bol text-dark" id="inputFile"
+                accept="aplication/pdf" onchange="readUrl(this)" data-title="Drag and drop a file">
+            </div>
+          </div>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
 </div>
 
-<script>
-  $("#datepickerFrom").datepicker({
-    format: "yyyy",
-    viewMode: "years",
-    minViewMode: "years",
-    autoclose: true //to close picker once year is selected
-  });
-  $("#datepickerTo").datepicker({
-    format: "yyyy",
-    viewMode: "years",
-    minViewMode: "years",
-    autoclose: true //to close picker once year is selected
-  });
+<script src="{{ asset('js/app.js') }}">
 </script>
 @endsection
