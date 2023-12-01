@@ -19,7 +19,8 @@
   <div class="col-8 ms-3">
     <div class="card bg-body-tertiary border">
       <legend class="card-header text-body-secondary">Pengajuan Cuti Dokumen</legend>
-      <form class="card-body">
+      <form class="card-body" action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
+        @csrf
         <div class="row">
           <div class="col">
             <div class="mb-3">
@@ -97,7 +98,7 @@
             <div class="form-group inputDnD">
               <label class="form-label" for="inputFile">Foto KTM</label>
               <input type="file" class="form-control-file text-primary font-weight-bold text-dark" id="inputFile"
-                accept="aplication/pdf" onchange="readUrl(this)" data-title="Drag and drop a file">
+                accept=".pdf" onchange="readUrl(this)" data-title="Drag and drop a file" name="ktm">
             </div>
           </div>
         </div>

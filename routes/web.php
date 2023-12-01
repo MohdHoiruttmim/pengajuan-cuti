@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,13 @@ Route::group(['middleware' => 'auth'], function() {
                 'title' => 'Pengajuan'
             ]);
         })->name('pengajuan');
+        Route::get('/users/status', function () {
+            return view('users.status', [
+                'title' => 'Status'
+            ]);
+        })->name('status');
+        Route::post('/upload', [FileController::class, 'upload'])
+        ->name('upload');
     });
 });
 

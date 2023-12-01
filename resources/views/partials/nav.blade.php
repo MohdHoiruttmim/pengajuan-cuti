@@ -21,15 +21,16 @@
         </li>
         @else
         <li class="nav-item">
-          <a class="nav-link {{ (Route::currentRouteName() == 'users')? 'active' : ''}}" aria-current="page"
+          <a class="nav-link {{ (Route::currentRouteName() == 'users')? 'active' : '' }}" aria-current="page"
             href="/users">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ (Route::currentRouteName() == 'pengajuan')? 'active' : ''}}"
+          <a class="nav-link {{ (Route::currentRouteName() == 'pengajuan')? 'active' : '' }}"
             href="/users/pengajuan">Pengajuan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/users/status">Status</a>
+          <a class="nav-link {{ (Route::currentRouteName() == 'status')? 'active' : ''  }}"
+            href="/users/status">Status</a>
         </li>
         @endif
       </ul>
