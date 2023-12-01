@@ -19,6 +19,11 @@ use App\Http\Controllers\FileController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/permohonan', function () {
+    return view('surat.permohonan', [
+        'title' => 'Permohonan'
+    ]);
+});
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -36,7 +41,12 @@ Route::group(['middleware' => 'auth'], function() {
             return view('admin.index', [
                 'title' => 'Admin Dashboard'
             ]);
-        })->name('adminDashboard');
+        })->name('admin');
+        Route::get('/admin/pengajuan', function () {
+            return view('admin.pengajuan', [
+                'title' => 'Admin Pengajuan'
+            ]);
+        })->name('admin-pengajuan');
     });
     Route::group(['middleware' => 'checkRole:user'], function() {
         Route::get('/users', function () {
