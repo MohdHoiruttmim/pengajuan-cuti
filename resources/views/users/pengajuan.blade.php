@@ -129,6 +129,15 @@
             </div>
           </div>
         </div>
+        <div class="mb-3">
+          <div class="col">
+            <div class="form-group inputDnD">
+              <label class="form-label" for="inputFile">Tanda tangan digital</label>
+              <input type="file" class="form-control-file text-primary font-weight-bol text-dark" id="inputFile"
+                accept="aplication/pdf" onchange="readUrl(this)" data-title="Drag and drop a file">
+            </div>
+          </div>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
