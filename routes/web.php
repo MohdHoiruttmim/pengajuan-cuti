@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,11 @@ use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/permohonan', function () {
+    return view('surat.permohonan', [
+        'title' => 'Permohonan'
+    ]);
 });
 
 // Route::get('/dashboard', function () {
@@ -35,7 +41,12 @@ Route::group(['middleware' => 'auth'], function() {
             return view('admin.index', [
                 'title' => 'Admin Dashboard'
             ]);
-        })->name('adminDashboard');
+        })->name('admin');
+        Route::get('/admin/pengajuan', function () {
+            return view('admin.pengajuan', [
+                'title' => 'Admin Pengajuan'
+            ]);
+        })->name('admin-pengajuan');
     });
     Route::group(['middleware' => 'checkRole:user'], function() {
         Route::get('/users', function () {
@@ -48,6 +59,13 @@ Route::group(['middleware' => 'auth'], function() {
                 'title' => 'Pengajuan'
             ]);
         })->name('pengajuan');
+        Route::get('/users/status', function () {
+            return view('users.status', [
+                'title' => 'Status'
+            ]);
+        })->name('status');
+        Route::post('/upload', [FileController::class, 'upload'])
+        ->name('upload');
     });
 });
 

@@ -11,25 +11,29 @@
       <ul class="navbar-nav">
         @if (Auth::user()->role == 'admin')
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="">Home</a>
+          <a class="nav-link {{ (Route::currentRouteName() == 'admin')? 'active' : '' }}" aria-current="page"
+            href="/admin">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#">Pengajuan</a>
+          <a class="nav-link {{ (Route::currentRouteName() == 'admin-pengajuan')? 'active' : '' }}"
+            href="/admin/pengajuan">Pengajuan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Status</a>
+          <a class="nav-link {{ (Route::currentRouteName() == 'status')? 'active' : '' }}"
+            href="/admin/status">Status</a>
         </li>
         @else
         <li class="nav-item">
-          <a class="nav-link {{ (Route::currentRouteName() == 'users')? 'active' : ''}}" aria-current="page"
+          <a class="nav-link {{ (Route::currentRouteName() == 'users')? 'active' : '' }}" aria-current="page"
             href="/users">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ (Route::currentRouteName() == 'pengajuan')? 'active' : ''}}"
+          <a class="nav-link {{ (Route::currentRouteName() == 'pengajuan')? 'active' : '' }}"
             href="/users/pengajuan">Pengajuan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/users/status">Status</a>
+          <a class="nav-link {{ (Route::currentRouteName() == 'status')? 'active' : ''  }}"
+            href="/users/status">Status</a>
         </li>
         @endif
       </ul>
