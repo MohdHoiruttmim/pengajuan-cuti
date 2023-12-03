@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('free_ortu');
             $table->string('ttd');
             $table->string('status');
+            $table->string('keterangan_ditolak')->nullable();
             $table->foreignId('id_mahasiswa')->constrained('mahasiswas', 'id')->onDelete('cascade');
             $table->timestamps();
         });

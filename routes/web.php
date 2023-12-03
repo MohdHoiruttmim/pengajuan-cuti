@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\MahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,16 +52,9 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::group(['middleware' => 'checkRole:prodi'], function() {
-        Route::get('/prodi', function () {
-            return view('prodi.index', [
-                'title' => 'Prodi Dashboard'
-            ]);
-        })->name('prodi');
-        Route::get('/prodi/pengajuan', function () {
-            return view('prodi.pengajuan', [
-                'title' => 'Prodi Pengajuan'
-            ]);
-        })->name('prodi-pengajuan');
+        Route::get('/prodi', [Prodicontroller::class, 'index'])->name('prodi');
+        Route::get('/prodi/pengajuan', [ProdiController::class, 'pengajuan'])->name('prodi-pengajuan');
+        Route::get('/prodi/pengajuan/{id}', [ProdiController::class, 'detail'])->name('prodi-pengajuan-detail');
     });
 
     Route::group(['middleware' => 'checkRole:user'], function() {
@@ -68,11 +63,7 @@ Route::group(['middleware' => 'auth'], function() {
                 'title' => 'User Dashboard'
             ]);
         })->name('users');
-        Route::get('/users/pengajuan', function () {
-            return view('users.pengajuan', [
-                'title' => 'Pengajuan'
-            ]);
-        })->name('pengajuan');
+        Route::get('/users/pengajuan', [MahasiswaController::class, 'pengajuan'])->name('pengajuan');
         Route::get('/users/status', function () {
             return view('users.status', [
                 'title' => 'Status'
