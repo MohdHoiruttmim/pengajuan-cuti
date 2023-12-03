@@ -52,25 +52,28 @@
         </div>
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">Alamat Rumah</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="alamat"></textarea>
         </div>
         <div class="mb-3 border rounded bg-white p-3">
           <label for="reason" class="form-label">Mengajukan permohanan Berhenti Studi Sementara (BSS) dengan alasan:
           </label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="reason" id="flexRadioDefault1" value="sakit" checked>
+            <input class="form-check-input" type="radio" name="reason" id="flexRadioDefault1"
+              value="Sakit dan perlu istirahat/perawatan" checked>
             <label class="form-check-label" for="flexRadioDefault1">
               Sakit dan perlu istirahat/perwatan
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="reason" id="flexRadioDefault2" value="kerja">
+            <input class="form-check-input" type="radio" name="reason" id="flexRadioDefault2"
+              value="Kerja Praktek/Dinas">
             <label class="form-check-label" for="flexRadioDefault2">
               Kerja Praktek/Dinas
             </label>
           </div>
           <div class="form-check">
-            <input type="radio" class="form-check-input" name="reason" id="flexRadioDefault3" value="lainnya">
+            <input type="radio" class="form-check-input" name="reason" id="flexRadioDefault3"
+              value="Keperluan lain yang bersifat pribadi">
             <label for="flexRadioDefault3" class="form-check-label">
               Keperluan lain yang bersifat pribadi
             </label>
@@ -80,26 +83,42 @@
           <label for="selectYear" class="form-label">Untuk Semsester dan tahun akademik</label>
           <div class="row">
             <div class="col-2">
-              <select class="form-select" aria-label="Default select example">
+              <select class="form-select" aria-label="Default select example" name="semester">
                 <option value="gasal">Gasal</option>
                 <option value="genap">Genap</option>
               </select>
             </div>
             <div class="col-3">
-              <input type="text" class="form-control" name="from" id="datepickerFrom">
+              <input type="text" class="form-control @error('from') is-invalid @enderror" name="from"
+                id="datepickerFrom" value="{{ old('from') }}">
+              <div class="invalid-feedback">
+                Masukan tahun akademik
+              </div>
             </div>
             <div class="col-3">
-              <input type="text" class="form-control" name="to" id="datepickerTo">
+              <input type="text" class="form-control @error('to') is-invalid @enderror" name="to" id="datepickerTo"
+                value="{{ old('to') }}">
+              <div class="invalid-feedback">
+                Masukan tahun akademik
+              </div>
             </div>
           </div>
         </div>
         <div class="mb-3">
+          <li class="text-body-secondary">
+            Ukuran file maksimal 2MB
+          </li>
           <div class="col">
             <div class="form-group inputDnD">
               <label class="form-label" for="inputFile">Foto KTM</label>
               <input type="file" class="form-control-file text-primary font-weight-bold text-dark" id="inputFile"
                 accept=".pdf" onchange="readUrl(this)" data-title="Drag and drop a file" name="ktm">
             </div>
+            @error('ktm')
+            <div class="alert alert-danger mt-2" role="alert">
+              <strong>Perhatian!</strong> silahkan upload dokumen terlebih dahulu
+            </div>
+            @enderror
           </div>
         </div>
         <div class="mb-3">
@@ -107,8 +126,13 @@
             <div class="form-group inputDnD">
               <label class="form-label" for="inputFile">Surat bebas tanggungan fakultas</label>
               <input type="file" class="form-control-file text-primary font-weight-bold text-dark" id="inputFile"
-                accept="aplication/pdf" onchange="readUrl(this)" data-title="Drag and drop a file">
+                accept="application/pdf" onchange="readUrl(this)" data-title="Drag and drop a file" name="free_fak">
             </div>
+            @error('free_fak')
+            <div class="alert alert-danger mt-2" role="alert">
+              <strong>Perhatian!</strong> silahkan upload dokumen terlebih dahulu
+            </div>
+            @enderror
           </div>
         </div>
         <div class="mb-3">
@@ -116,8 +140,13 @@
             <div class="form-group inputDnD">
               <label class="form-label" for="inputFile">Surat bebas perpustakaan</label>
               <input type="file" class="form-control-file text-primary font-weight-bold text-dark" id="inputFile"
-                accept="aplication/pdf" onchange="readUrl(this)" data-title="Drag and drop a file">
+                accept="application/pdf" onchange="readUrl(this)" data-title="Drag and drop a file" name="free_per">
             </div>
+            @error('free_per')
+            <div class="alert alert-danger mt-2" role="alert">
+              <strong>Perhatian!</strong> silahkan upload dokumen terlebih dahulu
+            </div>
+            @enderror
           </div>
         </div>
         <div class="mb-3">
@@ -125,8 +154,13 @@
             <div class="form-group inputDnD">
               <label class="form-label" for="inputFile">Surat pernyataan orang</label>
               <input type="file" class="form-control-file text-primary font-weight-bol text-dark" id="inputFile"
-                accept="aplication/pdf" onchange="readUrl(this)" data-title="Drag and drop a file">
+                accept="application/pdf" onchange="readUrl(this)" data-title="Drag and drop a file" name="free_ortu">
             </div>
+            @error('free_ortu')
+            <div class="alert alert-danger mt-2" role="alert">
+              <strong>Perhatian!</strong> silahkan upload dokumen terlebih dahulu
+            </div>
+            @enderror
           </div>
         </div>
         <div class="mb-3">
@@ -134,8 +168,13 @@
             <div class="form-group inputDnD">
               <label class="form-label" for="inputFile">Tanda tangan digital</label>
               <input type="file" class="form-control-file text-primary font-weight-bol text-dark" id="inputFile"
-                accept="aplication/pdf" onchange="readUrl(this)" data-title="Drag and drop a file">
+                accept="image/png" onchange="readUrl(this)" data-title="Drag and drop a file" name="ttd">
             </div>
+            @error('ttd')
+            <div class="alert alert-danger mt-2" role="alert">
+              <strong>Perhatian!</strong> foto dalam format .png dan landscape
+            </div>
+            @enderror
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -143,7 +182,7 @@
     </div>
   </div>
 </div>
-
+<!-- <a href="{{ asset('/storage/fakultas/1701585286.pdf') }}" target="_blank">Tes file</a> -->
 <script src="{{ asset('js/app.js') }}">
 </script>
 @endsection
