@@ -22,6 +22,19 @@
           <a class="nav-link {{ (Route::currentRouteName() == 'status')? 'active' : '' }}"
             href="/admin/status">Status</a>
         </li>
+        @elseif (Auth::user()->role == 'prodi')
+        <li class="nav-item">
+          <a class="nav-link {{ (Route::currentRouteName() == 'prodi')? 'active' : '' }}" aria-current="page"
+            href="/prodi">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ (Route::currentRouteName() == 'prodi-pengajuan')? 'active' : '' }}"
+            href="/prodi/pengajuan">Pengajuan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ (Route::currentRouteName() == 'status')? 'active' : '' }}"
+            href="/prodi/status">Status</a>
+        </li>
         @else
         <li class="nav-item">
           <a class="nav-link {{ (Route::currentRouteName() == 'users')? 'active' : '' }}" aria-current="page"

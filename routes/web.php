@@ -48,6 +48,20 @@ Route::group(['middleware' => 'auth'], function() {
             ]);
         })->name('admin-pengajuan');
     });
+
+    Route::group(['middleware' => 'checkRole:prodi'], function() {
+        Route::get('/prodi', function () {
+            return view('prodi.index', [
+                'title' => 'Prodi Dashboard'
+            ]);
+        })->name('prodi');
+        Route::get('/prodi/pengajuan', function () {
+            return view('prodi.pengajuan', [
+                'title' => 'Prodi Pengajuan'
+            ]);
+        })->name('prodi-pengajuan');
+    });
+
     Route::group(['middleware' => 'checkRole:user'], function() {
         Route::get('/users', function () {
             return view('users.index', [
