@@ -19,6 +19,8 @@ class Pengajuan extends Model
         'free_ortu',
         'ttd',
         'status',
+        'keterangan_ditolak',
+        'surat_permohonan',
         'id_mahasiswa'
     ];
 

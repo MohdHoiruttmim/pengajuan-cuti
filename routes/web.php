@@ -21,11 +21,11 @@ use App\Http\Controllers\MahasiswaController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/permohonan', function () {
-    return view('surat.permohonan', [
-        'title' => 'Permohonan'
-    ]);
-});
+// Route::get('/permohonan', function () {
+//     return view('surat.permohonan', [
+//         'title' => 'Permohonan'
+//     ]);
+// });
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -55,6 +55,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/prodi', [Prodicontroller::class, 'index'])->name('prodi');
         Route::get('/prodi/pengajuan', [ProdiController::class, 'pengajuan'])->name('prodi-pengajuan');
         Route::get('/prodi/pengajuan/{id}', [ProdiController::class, 'detail'])->name('prodi-pengajuan-detail');
+        Route::post('/prodi/pengajuan', [ProdiController::class, 'uploadTtd'])->name('prodi-pengajuan-upload');
+        Route::get('/prodi/permohonan/{id}', [ProdiController::class, 'permohonan'])->name('prodi-permohonan');
+        Route::post('/prodi/permohonan', [ProdiController::class, 'sendToBak'])->name('prodi-permohonan-send');
+        Route::get('/permohonan/{id}', [ProdiController::class, 'printPermohonan'])->name('print-permohonan');
     });
 
     Route::group(['middleware' => 'checkRole:user'], function() {
