@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\MahasiswaController;
 
@@ -39,16 +40,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"]);
 
     Route::group(['middleware' => 'checkRole:admin'], function() {
-        Route::get('/admin', function () {
-            return view('admin.index', [
-                'title' => 'Admin Dashboard'
-            ]);
-        })->name('admin');
-        Route::get('/admin/pengajuan', function () {
-            return view('admin.pengajuan', [
-                'title' => 'Admin Pengajuan'
-            ]);
-        })->name('admin-pengajuan');
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+        Route::get('/admin/pengajuan', [AdminController::class, 'pengajuan'])->name('admin-pengajuan');
+        Route::get('/admin/pengajuan/{id}', [AdminController::class, 'detail'])->name('admin-pengajuan-detail');
+        Route::post('/admin/pengajuan', [AdminController::class, 'confirm'])->name('admin-confirm-pengajuan');
     });
 
     Route::group(['middleware' => 'checkRole:prodi'], function() {
@@ -57,7 +52,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/prodi/pengajuan/{id}', [ProdiController::class, 'detail'])->name('prodi-pengajuan-detail');
         Route::post('/prodi/pengajuan', [ProdiController::class, 'uploadTtd'])->name('prodi-pengajuan-upload');
         Route::get('/prodi/permohonan/{id}', [ProdiController::class, 'permohonan'])->name('prodi-permohonan');
-        Route::post('/prodi/permohonan', [ProdiController::class, 'sendToBak'])->name('prodi-permohonan-send');
+        // Route::post('/prodi/permohonan', [ProdiController::class, 'sendToBak'])->name('prodi-permohonan-send');
         Route::get('/permohonan/{id}', [ProdiController::class, 'printPermohonan'])->name('print-permohonan');
     });
 

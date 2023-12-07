@@ -106,6 +106,7 @@
       <table class="table table-hover table-nowrap mx-2 my-3 bg-body-tertiary">
         <thead class="thead-light">
           <tr>
+            <th scope="col" class="text-secondary">No</th>
             <th scope="col" class="text-secondary">Mahasiswa</th>
             <th scope="col" class="text-secondary">Fakultas</th>
             <th scope="col" class="text-secondary">Program Studi</th>
@@ -113,22 +114,21 @@
           </tr>
         </thead>
         <tbody>
+          @foreach ($pengajuan as $p)
           <tr>
-            <td>Muhammad Javier</td>
-            <td>Teknik</td>
-            <td>Mesin</td>
+            <th scope="row">{{ $loop->iteration }}</th>
+            <td>{{ $p->mahasiswa->nama }}</td>
+            <td>{{ $p->mahasiswa->fakultas->nama }}</td>
+            <td>{{ $p->mahasiswa->prodi->nama }}</td>
             <td>
-              <span class="badge badge-lg" style="width: 70%; background: #FF8C00;">Cuti</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Ilham Axel</td>
-            <td>Pertanian</td>
-            <td>Teknologi Pangan</td>
-            <td>
+              @if ($p->status != 'Selesai')
+              <span class="badge badge-lg" style="width: 70%; background: #FF8C00;">{{ $p->status }}</span>
+              @else
               <span class="badge badge-lg" style="width: 70%; background: #00cc88;">Selesai</span>
+              @endif
             </td>
           </tr>
+          @endforeach
         </tbody>
       </table>
     </div>

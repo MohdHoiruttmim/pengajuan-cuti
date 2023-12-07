@@ -74,7 +74,7 @@
       <div class="ttd1" style="text-align: center; margin-right: 100px; position: relative;">
         <img src="{{ asset($pengajuan->ttd) }}" alt="ttd-korprodi"
           style="position: absolute; left: -20px; bottom: 40px;" width="200">
-        <p style="margin-bottom: 100px; color: white;">Bangkalan, 10/10/2023</p>
+        <p style="margin-bottom: 100px; visibility: hidden;">Bangkalan, 10/10/2023</p>
         <p style="margin-top: -20px;">Yang Mengajukan</p>
         <p style="margin-top: 100px;">Mohammad Javier</p>
         <p style="margin-top: -20px;">2102001172</p>

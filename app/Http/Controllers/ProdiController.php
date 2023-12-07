@@ -17,6 +17,7 @@ class ProdiController extends Controller
 
     public function pengajuan()
     {
+        // where staff.id_prodi = pengajuan->mahasiswa->id_prodi
         $all = Pengajuan::all();
 
         return view('prodi.pengajuan', [
@@ -60,19 +61,19 @@ class ProdiController extends Controller
         ]);
     }
 
-    public function sendToBak(Request $request) {
+    // public function sendToBak(Request $request) {
 
-        $permohonan = $request->file('permohonan');
-        $filenamePermohonan = time() . '.' . $permohonan->extension();
-        $pathPermohonan = $permohonan->storeAs('public/permohonan', $filenamePermohonan);
-        $permohonanPath = Storage::url($pathPermohonan);
-        dd($permohonanPath);
-        $pengajuan = Pengajuan::find($id);
-        $pengajuan->status = 'Diajukan';
-        // $pengajuan->save();
+    //     $permohonan = $request->file('permohonan');
+    //     $filenamePermohonan = time() . '.' . $permohonan->extension();
+    //     $pathPermohonan = $permohonan->storeAs('public/permohonan', $filenamePermohonan);
+    //     $permohonanPath = Storage::url($pathPermohonan);
+    //     dd($permohonanPath);
+    //     $pengajuan = Pengajuan::find($id);
+    //     $pengajuan->status = 'Diajukan';
+    //     // $pengajuan->save();
 
-        return redirect()->route('prodi-pengajuan');
-    }
+    //     return redirect()->route('prodi-pengajuan');
+    // }
 
     public function detail($id)
     {
