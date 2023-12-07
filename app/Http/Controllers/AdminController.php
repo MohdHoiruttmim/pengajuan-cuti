@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pengajuan;
+use App\Models\Pembayaran;
 
 class AdminController extends Controller
 {
@@ -19,8 +20,11 @@ class AdminController extends Controller
 
     public function pengajuan()
     {
+        $pengajuan = Pengajuan::all();
+
         return view('admin.pengajuan', [
-            'title' => 'Admin Pengajuan'
+            'title' => 'Admin Pengajuan',
+            'pengajuan' => $pengajuan,
         ]);
     }
 
@@ -35,6 +39,24 @@ class AdminController extends Controller
     }
 
     public function confirm(Request $request) {
-        dd($request->all());
+        $random = rand(100000000, 999999999);
+
+        $pembayaran = new Pembayaran;
+
+        $pembayaran->kode_pembayaran = $random;
+        $pembayaran->id_pengajuan = $request->id;
+        $pembayaran->status = 'Belum Dibayar';
+        $pembayaran->save();
+
+        return redirect()->route('admin-pengajuan');
+    }
+
+    public function status()
+    {
+        $pembayaran = pembayaran::all();
+        return view('admin.status', [
+            'title' => 'Admin Status',
+            'pembayaran' => $pembayaran,
+        ]);
     }
 }

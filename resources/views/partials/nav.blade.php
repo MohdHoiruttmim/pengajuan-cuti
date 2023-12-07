@@ -19,7 +19,7 @@
             href="/admin/pengajuan">Pengajuan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ (Route::currentRouteName() == 'status')? 'active' : '' }}"
+          <a class="nav-link {{ (Route::currentRouteName() == 'admin-status')? 'active' : '' }}"
             href="/admin/status">Status</a>
         </li>
         @elseif (Auth::user()->role == 'prodi')

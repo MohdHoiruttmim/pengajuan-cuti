@@ -96,6 +96,7 @@
                 <path fill-rule="evenodd"
                   d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2zM4.165 13.668c.09.18.23.343.438.419.207.075.412.04.58-.03.318-.13.635-.436.926-.786.333-.401.683-.927 1.021-1.51a11.651 11.651 0 0 1 1.997-.406c.3.383.61.713.91.95.28.22.603.403.934.417a.856.856 0 0 0 .51-.138c.155-.101.27-.247.354-.416.09-.181.145-.37.138-.563a.844.844 0 0 0-.2-.518c-.226-.27-.596-.4-.96-.465a5.76 5.76 0 0 0-1.335-.05 10.954 10.954 0 0 1-.98-1.686c.25-.66.437-1.284.52-1.794.036-.218.055-.426.048-.614a1.238 1.238 0 0 0-.127-.538.7.7 0 0 0-.477-.365c-.202-.043-.41 0-.601.077-.377.15-.576.47-.651.823-.073.34-.04.736.046 1.136.088.406.238.848.43 1.295a19.697 19.697 0 0 1-1.062 2.227 7.662 7.662 0 0 0-1.482.645c-.37.22-.699.48-.897.787-.21.326-.275.714-.08 1.103z" />
               </svg> Surat pernyataan orang tua</a></li>
+          @if($pengajuan->surat_permohonan != null)
           <li><a href="{{ asset($pengajuan->surat_permohonan) }}" class="text-decoration-none" target="_blank"><svg
                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-file-earmark-pdf-fill" viewBox="0 0 16 16">
@@ -104,13 +105,22 @@
                 <path fill-rule="evenodd"
                   d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2zM4.165 13.668c.09.18.23.343.438.419.207.075.412.04.58-.03.318-.13.635-.436.926-.786.333-.401.683-.927 1.021-1.51a11.651 11.651 0 0 1 1.997-.406c.3.383.61.713.91.95.28.22.603.403.934.417a.856.856 0 0 0 .51-.138c.155-.101.27-.247.354-.416.09-.181.145-.37.138-.563a.844.844 0 0 0-.2-.518c-.226-.27-.596-.4-.96-.465a5.76 5.76 0 0 0-1.335-.05 10.954 10.954 0 0 1-.98-1.686c.25-.66.437-1.284.52-1.794.036-.218.055-.426.048-.614a1.238 1.238 0 0 0-.127-.538.7.7 0 0 0-.477-.365c-.202-.043-.41 0-.601.077-.377.15-.576.47-.651.823-.073.34-.04.736.046 1.136.088.406.238.848.43 1.295a19.697 19.697 0 0 1-1.062 2.227 7.662 7.662 0 0 0-1.482.645c-.37.22-.699.48-.897.787-.21.326-.275.714-.08 1.103z" />
               </svg> Surat Permohonan berhenti studi sementara</a></li>
+          @endif
         </ul>
         <label for="floatingPlaintextInput">Berikut dokumen yang terlampir</label>
       </div>
+      @if ($pengajuan->pembayaran != null)
+      <div class="form-floating" style="margin-top: 90px;">
+        <input type="text" readonly class="form-control-plaintext fw-bold" id="floatingPlaintextInput" placeholder=""
+          value="{{ $pengajuan->pembayaran->kode_pembayaran }}">
+        <label for="floatingPlaintextInput">Kode Pembayaran</label>
+      </div>
+      @else
       <div class="confirm d-flex justify-content-center">
-        <input type="submit" class="btn btn-primary m-2 mt-5" value="Proses Pengajuan">
+        <input type="submit" class="btn btn-primary m-2 mt-5" value="Kirim Kode Pembayaran">
         <a class="btn btn-danger m-2 mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Tolak Pengajuan</a>
       </div>
+      @endif
     </form>
   </div>
 </main>

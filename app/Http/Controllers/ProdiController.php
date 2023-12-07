@@ -38,7 +38,7 @@ class ProdiController extends Controller
 
         $pengajuan = Pengajuan::find($request->id);
         $pengajuan->ttd_prodi = $ttdPath;
-        $pengajuan->status = 'Diteruskan';
+        $pengajuan->status = 'Teruskan';
         $pengajuan->surat_permohonan = "/permohonan/".$request->id;
         $pengajuan->save();
         

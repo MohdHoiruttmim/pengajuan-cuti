@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/admin/pengajuan', [AdminController::class, 'pengajuan'])->name('admin-pengajuan');
         Route::get('/admin/pengajuan/{id}', [AdminController::class, 'detail'])->name('admin-pengajuan-detail');
         Route::post('/admin/pengajuan', [AdminController::class, 'confirm'])->name('admin-confirm-pengajuan');
+        Route::get('/admin/status', [AdminController::class, 'status'])->name('admin-status');
     });
 
     Route::group(['middleware' => 'checkRole:prodi'], function() {
@@ -52,22 +53,14 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/prodi/pengajuan/{id}', [ProdiController::class, 'detail'])->name('prodi-pengajuan-detail');
         Route::post('/prodi/pengajuan', [ProdiController::class, 'uploadTtd'])->name('prodi-pengajuan-upload');
         Route::get('/prodi/permohonan/{id}', [ProdiController::class, 'permohonan'])->name('prodi-permohonan');
-        // Route::post('/prodi/permohonan', [ProdiController::class, 'sendToBak'])->name('prodi-permohonan-send');
         Route::get('/permohonan/{id}', [ProdiController::class, 'printPermohonan'])->name('print-permohonan');
     });
 
     Route::group(['middleware' => 'checkRole:user'], function() {
-        Route::get('/users', function () {
-            return view('users.index', [
-                'title' => 'User Dashboard'
-            ]);
-        })->name('users');
+        Route::get('/users', [MahasiswaController::class, 'index'])->name('users');
         Route::get('/users/pengajuan', [MahasiswaController::class, 'pengajuan'])->name('pengajuan');
-        Route::get('/users/status', function () {
-            return view('users.status', [
-                'title' => 'Status'
-            ]);
-        })->name('status');
+        Route::get('/users/status', [MahasiswaController::class, 'status'])->name('status');
+        Route::post('/users/confirm', [MahasiswaController::class, 'confirm'])->name('confirm');
         Route::post('/upload', [FileController::class, 'upload'])
         ->name('upload');
     });

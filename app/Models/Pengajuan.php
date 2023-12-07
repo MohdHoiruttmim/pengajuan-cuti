@@ -29,6 +29,11 @@ class Pengajuan extends Model
         return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
     }
 
+    public function pembayaran()
+    {
+        return $this->hasOne(Pembayaran::class, 'id_pengajuan', 'id');
+    }
+
     // public function prodi()
     // {
     //     return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
