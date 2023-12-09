@@ -15,8 +15,8 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                <span class="h4 mb-0 text-muted">$750.90</span>
+                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total pengajuan</span>
+                <span class="h4 mb-0 text-muted">{{ $total }}</span>
               </div>
               <div class="col-auto">
                 <div class="icon icon-shape text-white text-lg rounded-circle p-3" style="background: #FF579A;">
@@ -36,8 +36,8 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                <span class="h4 mb-0 text-muted">$750.90</span>
+                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Diproses</span>
+                <span class="h4 mb-0 text-muted">{{ $diproses }}</span>
               </div>
               <div class="col-auto">
                 <div class="icon icon-shape text-white text-lg rounded-circle p-3" style="background: #5C60F5;
@@ -64,8 +64,8 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                <span class="h4 mb-0 text-muted">$750.90</span>
+                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Diterima</span>
+                <span class="h4 mb-0 text-muted">{{ $diterima }}</span>
               </div>
               <div class="col-auto">
                 <div class="icon icon-shape text-white text-lg rounded-circle p-3" style="background: #33adff;">
@@ -85,8 +85,8 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                <span class="h4 mb-0 text-muted">$750.90</span>
+                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Selesai</span>
+                <span class="h4 mb-0 text-muted">{{ $selesai }}</span>
               </div>
               <div class="col-auto">
                 <div class="icon icon-shape text-white text-lg rounded-circle p-3" style="background: #FF8C00;">

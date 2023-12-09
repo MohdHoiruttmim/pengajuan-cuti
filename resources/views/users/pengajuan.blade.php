@@ -39,13 +39,13 @@
         <div class="row">
           <div class="col">
             <div class="mb-3">
-              <label for="fakultas">Fakultas</label>
+              <label for="fakultas" class="form-label">Fakultas</label>
               <input type="text" class="form-control" id="fakultas" value="{{ $user->fakultas->nama }}" disabled>
             </div>
           </div>
           <div class="col">
             <div class="mb-3">
-              <label for="prodi">Program Studi</label>
+              <label for="prodi" class="form-label">Program Studi</label>
               <input type="text" class="form-control" id="prodi" value="{{ $user->prodi->nama }}" disabled>
             </div>
           </div>

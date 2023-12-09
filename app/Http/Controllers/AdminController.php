@@ -11,10 +11,18 @@ class AdminController extends Controller
     public function index()
     {
         $pengajuan = Pengajuan::all();
+        $pengajuanTotal = Pengajuan::count();
+        $pengajuanDiproses = Pengajuan::where('status', 'proses')->count();
+        $pengajuanDiterima = Pengajuan::where('status', 'teruskan')->count();
+        $pengajuanSelseai = Pengajuan::where('status', 'selesai')->count();
 
         return view('admin.index', [
             'title' => 'Admin Dashboard',
             'pengajuan' => $pengajuan,
+            'total' => $pengajuanTotal,
+            'diproses' => $pengajuanDiproses,
+            'diterima' => $pengajuanDiterima,
+            'selesai' => $pengajuanSelseai,
         ]);
     }
 
@@ -58,5 +66,15 @@ class AdminController extends Controller
             'title' => 'Admin Status',
             'pembayaran' => $pembayaran,
         ]);
+    }
+
+    public function verify(Request $request)
+    {
+        // dd($request->all());
+        $pembayaran = Pembayaran::find($request->id);
+        $pembayaran->status = 'Lunas';
+        $pembayaran->save();
+
+        return redirect()->route('admin-status');
     }
 }

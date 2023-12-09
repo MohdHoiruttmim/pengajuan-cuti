@@ -27,7 +27,7 @@
         data-bs-toggle="modal" data-bs-target="#uploadBukti">Upload Bukti
         Pembayaran</span></p>
     @else
-    <p class="text-center">Silahkan tunggu hingga pembayaran anda di verifikasi</p>
+    <p class="text-center">Silahkan tunggu hingga pembayaran anda di verifikasi dan pengecekan berkas selesai</p>
     @endif
     <p class="lead text-center">Jika ada pertanyaan silahkan hubungi: </p>
   </div>
@@ -85,6 +85,7 @@
 <button style="display: none;"><a href="{{ asset('storage/pdf/1701394725.pdf') }}" target="_blank">tets</a></button>
 
 <!-- Modal -->
+@if ($user->pengajuan[0]->pembayaran != null)
 <div class="modal fade" id="uploadBukti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <form action="{{ route('confirm') }}" method="POST" enctype="multipart/form-data">
@@ -114,5 +115,6 @@
     </form>
   </div>
 </div>
+@endif
 <script src="{{ asset('js/app.js') }}"></script>
 @endsection

@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/admin/pengajuan/{id}', [AdminController::class, 'detail'])->name('admin-pengajuan-detail');
         Route::post('/admin/pengajuan', [AdminController::class, 'confirm'])->name('admin-confirm-pengajuan');
         Route::get('/admin/status', [AdminController::class, 'status'])->name('admin-status');
+        Route::post('/admin/status', [AdminController::class, 'verify'])->name('admin-verify');
     });
 
     Route::group(['middleware' => 'checkRole:prodi'], function() {

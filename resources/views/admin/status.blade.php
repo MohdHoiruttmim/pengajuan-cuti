@@ -42,20 +42,27 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Verifikasi pembayaran</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                       @if($p->bukti_pembayaran == null)
                       <strong>Belum ada pembayaran</strong>
                       @else
-                      <img src="{{ $p->bukti_pembayaran }}" alt="" class="img-thumbnail">
+                      <img src="{{ $p->bukti_pembayaran }}" alt="bukti-pembayaran" class="img-thumbnail">
                       @endif
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+                    <form action="{{ route('admin-verify') }}" method="POST">
+                      @csrf
+                      <input type="text" value="{{ $p->id }}" class="visually-hidden" name="id">
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                        @if ($p->status != 'Lunas')
+                        <button type="submit" class="btn btn-primary"
+                          onclick="return confirm('Konfirmasi pembayaran')">Konfirmasi</button>
+                        @endif
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
