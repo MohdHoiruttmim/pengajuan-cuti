@@ -22,11 +22,11 @@ use App\Http\Controllers\MahasiswaController;
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/permohonan', function () {
-//     return view('surat.permohonan', [
-//         'title' => 'Permohonan'
+// Route::get('/keterangan', function () {
+//     return view('surat.keterangan', [
+//         'title' => 'Keterangan BSS'
 //     ]);
-// });
+// })->name('surat-keterangan');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function() {
     })->name('dashboard');
 
     Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"]);
+
+    Route::post('/keterangan/{id}', [AdminController::class, 'keterangan'])->name('surat-keterangan');
 
     Route::group(['middleware' => 'checkRole:admin'], function() {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin');

@@ -70,11 +70,23 @@ class AdminController extends Controller
 
     public function verify(Request $request)
     {
-        // dd($request->all());
         $pembayaran = Pembayaran::find($request->id);
         $pembayaran->status = 'Lunas';
         $pembayaran->save();
 
         return redirect()->route('admin-status');
+    }
+
+    public function keterangan($id)
+    {
+        $pengajuan = Pengajuan::find($id);
+
+        $pengajuan->status = 'Diterima';
+        $pengajuan->save();
+
+        return view('surat.keterangan', [
+            'title' => 'Surat Keterangan BSS',
+            'pengajuan' => $pengajuan,
+        ]);
     }
 }

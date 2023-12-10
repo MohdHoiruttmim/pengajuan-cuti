@@ -45,7 +45,7 @@
         </svg> Surat permohonan BSS
       </a>
     </h3>
-    <p class="text-center">Surat permohanan dapat diunduh pada link diatas</p>
+    <p class="text-center">Surat permohanan dapat diunduh pada link di atas</p>
     @endif
     <p class="lead text-center">Jika ada pertanyaan silahkan hubungi: </p>
   </div>
@@ -63,6 +63,12 @@
   <dotlottie-player class="mx-auto" src="https://lottie.host/3fb623e1-8c20-444b-9528-13202ed328d1/wjLxk0GnFz.json"
     background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
   <div class="say-down">
+    <form class="text-center mb-2" action="{{ route('surat-keterangan', $user->pengajuan[0]->id) }}" method="POST"
+      target="_blank">
+      @csrf
+      <button type="submit" class="btn btn-primary">Surat Keterangan BSS</button>
+    </form>
+    <p class="text-center">Surat keterangan berhenti studi sementara dapat diunduh pada link di atas</p>
     <p class="lead text-center">Jika ada pertanyaan silahkan hubungi: </p>
   </div>
 </div>

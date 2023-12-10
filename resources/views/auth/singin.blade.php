@@ -5,7 +5,8 @@
 
 <div class="container" style="margin-top: 20vh;">
   <h3 class="text-center my-4">Sign in</h3>
-  <form action="">
+  <form action="{{ route('login') }}" method="POST">
+    @csrf
     <div class="row">
       <div class="col-4 mx-auto">
         <div class="form-floating mb-3">

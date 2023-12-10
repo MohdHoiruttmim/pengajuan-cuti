@@ -61,7 +61,7 @@
         <!-- name user -->
 
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li><a class="dropdown-item" href="#">Profil</a></li>
+          <li><a class="dropdown-item" href="/profile">Profil</a></li>
           <form action="/logout" method="POST">
             @csrf
             <li>

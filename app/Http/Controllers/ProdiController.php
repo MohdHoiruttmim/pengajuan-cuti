@@ -61,20 +61,6 @@ class ProdiController extends Controller
         ]);
     }
 
-    // public function sendToBak(Request $request) {
-
-    //     $permohonan = $request->file('permohonan');
-    //     $filenamePermohonan = time() . '.' . $permohonan->extension();
-    //     $pathPermohonan = $permohonan->storeAs('public/permohonan', $filenamePermohonan);
-    //     $permohonanPath = Storage::url($pathPermohonan);
-    //     dd($permohonanPath);
-    //     $pengajuan = Pengajuan::find($id);
-    //     $pengajuan->status = 'Diajukan';
-    //     // $pengajuan->save();
-
-    //     return redirect()->route('prodi-pengajuan');
-    // }
-
     public function detail($id)
     {
         $pengajuan = Pengajuan::find($id);
