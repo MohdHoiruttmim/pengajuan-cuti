@@ -15,8 +15,8 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                <span class="h4 mb-0 text-muted">$750.90</span>
+                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total pengajuan</span>
+                <span class="h4 mb-0 text-muted">{{ $total }}</span>
               </div>
               <div class="col-auto">
                 <div class="icon icon-shape text-white text-lg rounded-circle p-3" style="background: #FF579A;">
@@ -36,8 +36,8 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                <span class="h4 mb-0 text-muted">$750.90</span>
+                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Diproses</span>
+                <span class="h4 mb-0 text-muted">{{ $diproses }}</span>
               </div>
               <div class="col-auto">
                 <div class="icon icon-shape text-white text-lg rounded-circle p-3" style="background: #5C60F5;
@@ -64,8 +64,8 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                <span class="h4 mb-0 text-muted">$750.90</span>
+                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Diterima</span>
+                <span class="h4 mb-0 text-muted">{{ $diterima }}</span>
               </div>
               <div class="col-auto">
                 <div class="icon icon-shape text-white text-lg rounded-circle p-3" style="background: #33adff;">
@@ -85,8 +85,8 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                <span class="h4 mb-0 text-muted">$750.90</span>
+                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Selesai</span>
+                <span class="h4 mb-0 text-muted">{{ $selesai }}</span>
               </div>
               <div class="col-auto">
                 <div class="icon icon-shape text-white text-lg rounded-circle p-3" style="background: #FF8C00;">
@@ -106,6 +106,7 @@
       <table class="table table-hover table-nowrap mx-2 my-3 bg-body-tertiary">
         <thead class="thead-light">
           <tr>
+            <th scope="col" class="text-secondary">No</th>
             <th scope="col" class="text-secondary">Mahasiswa</th>
             <th scope="col" class="text-secondary">Fakultas</th>
             <th scope="col" class="text-secondary">Program Studi</th>
@@ -113,22 +114,21 @@
           </tr>
         </thead>
         <tbody>
+          @foreach ($pengajuan as $p)
           <tr>
-            <td>Muhammad Javier</td>
-            <td>Teknik</td>
-            <td>Mesin</td>
+            <th scope="row">{{ $loop->iteration }}</th>
+            <td>{{ $p->mahasiswa->nama }}</td>
+            <td>{{ $p->mahasiswa->fakultas->nama }}</td>
+            <td>{{ $p->mahasiswa->prodi->nama }}</td>
             <td>
-              <span class="badge badge-lg" style="width: 70%; background: #FF8C00;">Cuti</span>
-            </td>
-          </tr>
-          <tr>
-            <td>Ilham Axel</td>
-            <td>Pertanian</td>
-            <td>Teknologi Pangan</td>
-            <td>
+              @if ($p->status != 'Selesai')
+              <span class="badge badge-lg" style="width: 70%; background: #FF8C00;">{{ $p->status }}</span>
+              @else
               <span class="badge badge-lg" style="width: 70%; background: #00cc88;">Selesai</span>
+              @endif
             </td>
           </tr>
+          @endforeach
         </tbody>
       </table>
     </div>

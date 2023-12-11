@@ -19,12 +19,19 @@ class Pengajuan extends Model
         'free_ortu',
         'ttd',
         'status',
+        'keterangan_ditolak',
+        'surat_permohonan',
         'id_mahasiswa'
     ];
 
     public function mahasiswa()
     {
         return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
+    }
+
+    public function pembayaran()
+    {
+        return $this->hasOne(Pembayaran::class, 'id_pengajuan', 'id');
     }
 
     // public function prodi()

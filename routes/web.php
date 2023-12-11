@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\MahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +22,11 @@ use App\Http\Controllers\FileController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/permohonan', function () {
-    return view('surat.permohonan', [
-        'title' => 'Permohonan'
-    ]);
-});
+// Route::get('/keterangan', function () {
+//     return view('surat.keterangan', [
+//         'title' => 'Keterangan BSS'
+//     ]);
+// })->name('surat-keterangan');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -36,48 +39,31 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"]);
 
+    Route::post('/keterangan/{id}', [AdminController::class, 'keterangan'])->name('surat-keterangan');
+
     Route::group(['middleware' => 'checkRole:admin'], function() {
-        Route::get('/admin', function () {
-            return view('admin.index', [
-                'title' => 'Admin Dashboard'
-            ]);
-        })->name('admin');
-        Route::get('/admin/pengajuan', function () {
-            return view('admin.pengajuan', [
-                'title' => 'Admin Pengajuan'
-            ]);
-        })->name('admin-pengajuan');
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+        Route::get('/admin/pengajuan', [AdminController::class, 'pengajuan'])->name('admin-pengajuan');
+        Route::get('/admin/pengajuan/{id}', [AdminController::class, 'detail'])->name('admin-pengajuan-detail');
+        Route::post('/admin/pengajuan', [AdminController::class, 'confirm'])->name('admin-confirm-pengajuan');
+        Route::get('/admin/status', [AdminController::class, 'status'])->name('admin-status');
+        Route::post('/admin/status', [AdminController::class, 'verify'])->name('admin-verify');
     });
 
     Route::group(['middleware' => 'checkRole:prodi'], function() {
-        Route::get('/prodi', function () {
-            return view('prodi.index', [
-                'title' => 'Prodi Dashboard'
-            ]);
-        })->name('prodi');
-        Route::get('/prodi/pengajuan', function () {
-            return view('prodi.pengajuan', [
-                'title' => 'Prodi Pengajuan'
-            ]);
-        })->name('prodi-pengajuan');
+        Route::get('/prodi', [Prodicontroller::class, 'index'])->name('prodi');
+        Route::get('/prodi/pengajuan', [ProdiController::class, 'pengajuan'])->name('prodi-pengajuan');
+        Route::get('/prodi/pengajuan/{id}', [ProdiController::class, 'detail'])->name('prodi-pengajuan-detail');
+        Route::post('/prodi/pengajuan', [ProdiController::class, 'uploadTtd'])->name('prodi-pengajuan-upload');
+        Route::get('/prodi/permohonan/{id}', [ProdiController::class, 'permohonan'])->name('prodi-permohonan');
+        Route::get('/permohonan/{id}', [ProdiController::class, 'printPermohonan'])->name('print-permohonan');
     });
 
     Route::group(['middleware' => 'checkRole:user'], function() {
-        Route::get('/users', function () {
-            return view('users.index', [
-                'title' => 'User Dashboard'
-            ]);
-        })->name('users');
-        Route::get('/users/pengajuan', function () {
-            return view('users.pengajuan', [
-                'title' => 'Pengajuan'
-            ]);
-        })->name('pengajuan');
-        Route::get('/users/status', function () {
-            return view('users.status', [
-                'title' => 'Status'
-            ]);
-        })->name('status');
+        Route::get('/users', [MahasiswaController::class, 'index'])->name('users');
+        Route::get('/users/pengajuan', [MahasiswaController::class, 'pengajuan'])->name('pengajuan');
+        Route::get('/users/status', [MahasiswaController::class, 'status'])->name('status');
+        Route::post('/users/confirm', [MahasiswaController::class, 'confirm'])->name('confirm');
         Route::post('/upload', [FileController::class, 'upload'])
         ->name('upload');
     });

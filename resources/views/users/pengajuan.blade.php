@@ -11,9 +11,9 @@
     style="height: fit-content;">
     <img src="{{ asset('images/male.png') }}" alt="avatar" width="50" height="50">
     <div class="faculity ms-2">
-      <h5 class="card-subtitle" style="color: #334155;">Mohammad Javier</h5>
-      <h6 class="card-subtitle text-body-secondary">Teknik Informatika</h6>
-      <h6 class="card-subtitle text-body-secondary">Fakultas Teknik</h6>
+      <h5 class="card-subtitle" style="color: #334155;">{{ $user->nama }}</h5>
+      <h6 class="card-subtitle text-body-secondary">{{ $user->prodi->nama }}</h6>
+      <h6 class="card-subtitle text-body-secondary">{{ $user->fakultas->nama }}</h6>
     </div>
   </div>
   <div class="col-8 ms-3">
@@ -26,33 +26,34 @@
             <div class="mb-3">
               <label for="inputName" class="form-label">Nama</label>
               <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                value="Mohmmad Javier" disabled>
+                value="{{ $user->nama }}" disabled>
             </div>
           </div>
           <div class="col">
             <div class="mb-3">
               <label for="NIM" class="form-label">NIM</label>
-              <input type="text" class="form-control" id="NIM" value="210411100121" disabled>
+              <input type="text" class="form-control" id="NIM" value="{{ $user->nim }}" disabled>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col">
             <div class="mb-3">
-              <label for="fakultas">Fakultas</label>
-              <input type="text" class="form-control" id="fakultas" value="Teknik" disabled>
+              <label for="fakultas" class="form-label">Fakultas</label>
+              <input type="text" class="form-control" id="fakultas" value="{{ $user->fakultas->nama }}" disabled>
             </div>
           </div>
           <div class="col">
             <div class="mb-3">
-              <label for="prodi">Program Studi</label>
-              <input type="text" class="form-control" id="prodi" value="Teknik Informatika" disabled>
+              <label for="prodi" class="form-label">Program Studi</label>
+              <input type="text" class="form-control" id="prodi" value="{{ $user->prodi->nama }}" disabled>
             </div>
           </div>
         </div>
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">Alamat Rumah</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="alamat"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="alamat">{{ $user->alamat  }}
+          </textarea>
         </div>
         <div class="mb-3 border rounded bg-white p-3">
           <label for="reason" class="form-label">Mengajukan permohanan Berhenti Studi Sementara (BSS) dengan alasan:
