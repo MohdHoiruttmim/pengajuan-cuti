@@ -18,11 +18,16 @@ class ProdiController extends Controller
     public function pengajuan()
     {
         // where staff.id_prodi = pengajuan->mahasiswa->id_prodi
-        $all = Pengajuan::all();
+        $id = auth()->user()->staff->id_prodi;
+
+        // mendapatkan data hanya yang sesuai dengan prodi
+        $pengajuan = Pengajuan::whereHas('mahasiswa', function($query) use ($id) {
+            $query->where('id_prodi', $id);
+        })->get();
 
         return view('prodi.pengajuan', [
             'title' => 'Prodi Pengajuan',
-            'pengajuan' => $all
+            'pengajuan' => $pengajuan
         ]);
     }
 

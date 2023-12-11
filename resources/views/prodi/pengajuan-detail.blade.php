@@ -128,7 +128,8 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Keterangan Penolakan</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="">
+      <form action="{{ route('tolak', $pengajuan->id) }}" method="POST">
+        @csrf
         <div class="modal-body">
           <textarea name="keterangan" id="keterangan" class="form-control" rows="3"></textarea>
         </div>
