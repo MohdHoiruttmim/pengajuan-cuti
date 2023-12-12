@@ -27,7 +27,8 @@ class MahasiswaController extends Controller
 
     public function status()
     {
-        $user = Mahasiswa::where('id_user', auth()->user()->id)->first();
+        $user = Mahasiswa::where('id_user', auth()->user()->id)
+                ->first();
 
         return view('users.status', [
             'title' => 'Status',

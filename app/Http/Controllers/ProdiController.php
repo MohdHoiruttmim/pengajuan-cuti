@@ -10,6 +10,18 @@ class ProdiController extends Controller
 {
     public function index()
     {
+        $id = auth()->user()->staff->id_prodi;
+
+        $pengajuan = Pengajuan::whereHas('mahasiswa', function($query) use ($id) {
+            $query->where('id_prodi', $id);
+        })->count();
+
+        $diproses = Pengajuan::whereHas('mahasiswa', function($query) use ($id) {
+            $query->where('id_prodi', $id)
+            ->where('status', 'Diproses');
+        })->get();
+
+        dd($diproses);
         return view('prodi.index', [
             'title' => 'Prodi Dashboard'
         ]);

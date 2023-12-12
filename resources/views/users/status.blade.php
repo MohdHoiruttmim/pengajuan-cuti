@@ -8,21 +8,27 @@
 @section('container')
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 
-@if ($user->pengajuan[0]->status == 'Proses' || $user->pengajuan[0]->status == 'Teruskan')
+@if ($user->pengajuan->count() > 1)
+<?php $index = $user->pengajuan->count() - 1 ?>
+@else
+<?php $index = 0 ?>
+@endif
+
+@if ($user->pengajuan[$index]->status == 'Proses' || $user->pengajuan[$index]->status == 'Teruskan')
 <div class="row">
   <div class="say mt-4">
     <h3 class="text-center">Mohon menunggu 👌</h3>
     <h3 class="text-center text-body-secondary">
       Permintaan anda
-      <small class="text-body-tertiary">sedang kami {{ $user->pengajuan[0]->status }}</small>
+      <small class="text-body-tertiary">sedang kami {{ $user->pengajuan[$index]->status }}</small>
     </h3>
   </div>
   <dotlottie-player class="mx-auto" src="https://lottie.host/18579bf6-e98a-4d0e-a7a3-b2f0c16e9f8e/4KeTAxCpCS.json"
     background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
-  @if($user->pengajuan[0]->pembayaran != null)
+  @if($user->pengajuan[$index]->pembayaran != null)
   <div class="say-down">
-    @if($user->pengajuan[0]->pembayaran->bukti_pembayaran == null)
-    <h3 class="text-center">{{ $user->pengajuan[0]->pembayaran->kode_pembayaran }}</h3>
+    @if($user->pengajuan[$index]->pembayaran->bukti_pembayaran == null)
+    <h3 class="text-center">{{ $user->pengajuan[$index]->pembayaran->kode_pembayaran }}</h3>
     <p class="text-center">Silahkan lakukan pembayaran pada kode di atas, <span class="btn btn-primary"
         data-bs-toggle="modal" data-bs-target="#uploadBukti">Upload Bukti
         Pembayaran</span></p>
@@ -33,9 +39,9 @@
   </div>
   @else
   <div class="say-down">
-    @if($user->pengajuan[0]->surat_permohonan != null)
+    @if($user->pengajuan[$index]->surat_permohonan != null)
     <h3 class="text-center">
-      <a href="{{ $user->pengajuan[0] }}" class="text-decoration-none text-dark" target="_blank">
+      <a href="{{ $user->pengajuan[$index] }}" class="text-decoration-none text-dark" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
           class="bi bi-file-earmark-pdf-fill" viewBox="0 0 16 16">
           <path
@@ -51,7 +57,7 @@
   </div>
   @endif
 </div>
-@elseif ($user->pengajuan[0]->status == 'Diterima')
+@elseif ($user->pengajuan[$index]->status == 'Diterima')
 <div class="row">
   <div class="say mt-4">
     <h3 class="text-center">Pengajuan anda diterima🎉</h3>
@@ -63,7 +69,7 @@
   <dotlottie-player class="mx-auto" src="https://lottie.host/3fb623e1-8c20-444b-9528-13202ed328d1/wjLxk0GnFz.json"
     background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
   <div class="say-down">
-    <form class="text-center mb-2" action="{{ route('surat-keterangan', $user->pengajuan[0]->id) }}" method="POST"
+    <form class="text-center mb-2" action="{{ route('surat-keterangan', $user->pengajuan[$index]->id) }}" method="POST"
       target="_blank">
       @csrf
       <button type="submit" class="btn btn-primary">Surat Keterangan BSS</button>
@@ -84,14 +90,15 @@
   <dotlottie-player class="mx-auto" src="https://lottie.host/a64a2a4a-74c9-4da7-8b8c-7072cbe0c2f9/UFyeG7fnCT.json"
     background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
   <div class="say-down">
-    <p class="lead text-center">Jika ada pertanyaan silahkan hubungi: </p>
+    <p class="text-center"> Catatan: {{ $user->pengajuan[$index]->keterangan_ditolak }}</p>
+    <p class=" lead text-center">Jika ada pertanyaan silahkan hubungi: </p>
   </div>
 </div>
 @endif
 <button style="display: none;"><a href="{{ asset('storage/pdf/1701394725.pdf') }}" target="_blank">tets</a></button>
 
 <!-- Modal -->
-@if ($user->pengajuan[0]->pembayaran != null)
+@if ($user->pengajuan[$index]->pembayaran != null)
 <div class="modal fade" id="uploadBukti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <form action="{{ route('confirm') }}" method="POST" enctype="multipart/form-data">
@@ -102,7 +109,7 @@
         </div>
         <div class="modal-body">
           @csrf
-          <input type="text" value="{{ $user->pengajuan[0]->pembayaran->id }}" class="visually-hidden" name="id">
+          <input type="text" value="{{ $user->pengajuan[$index]->pembayaran->id }}" class="visually-hidden" name="id">
           <div class="form-group inputDnD">
             <label class="form-label" for="inputFile">Sertakan bukti pembayaran</label>
             <input type="file" class="form-control-file text-primary font-weight-bol text-dark" id="inputFile"
