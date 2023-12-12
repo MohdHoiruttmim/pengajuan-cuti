@@ -69,6 +69,10 @@
   <dotlottie-player class="mx-auto" src="https://lottie.host/3fb623e1-8c20-444b-9528-13202ed328d1/wjLxk0GnFz.json"
     background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
   <div class="say-down">
+    <p class="text-center">
+      Jika dibutuhkan, Surat permohonan dapat diunduh
+      <a href="{{ $user->pengajuan[$index]->surat_permohonan }}" class="mx-auto d-inline">disini!</a>
+    </p>
     <form class="text-center mb-2" action="{{ route('surat-keterangan', $user->pengajuan[$index]->id) }}" method="POST"
       target="_blank">
       @csrf

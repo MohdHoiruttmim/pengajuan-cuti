@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $pengajuan = Pengajuan::all();
+        $pengajuan = Pengajuan::where('status', '!=', 'Proses')->get();
         $pengajuanTotal = Pengajuan::count();
         $pengajuanDiproses = Pengajuan::where('status', 'proses')->count();
         $pengajuanDiterima = Pengajuan::where('status', 'teruskan')->count();

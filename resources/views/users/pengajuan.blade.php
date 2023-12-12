@@ -153,7 +153,7 @@
         <div class="mb-3">
           <div class="col">
             <div class="form-group inputDnD">
-              <label class="form-label" for="inputFile">Surat pernyataan orang</label>
+              <label class="form-label" for="inputFile">Surat pernyataan orang tua</label>
               <input type="file" class="form-control-file text-primary font-weight-bol text-dark" id="inputFile"
                 accept="application/pdf" onchange="readUrl(this)" data-title="Drag and drop a file" name="free_ortu">
             </div>

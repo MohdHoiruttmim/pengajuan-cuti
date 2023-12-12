@@ -116,6 +116,16 @@
         <input type="submit" class="btn btn-primary m-2" value="Proses Pengajuan">
         <a class="btn btn-danger m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Tolak Pengajuan</a>
       </div>
+      @else
+      <div class="mb-3 pt-3">
+        <div class="col">
+          <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+              style="height: 100px" disabled>{{ $pengajuan->keterangan_ditolak }}</textarea>
+            <label for="floatingTextarea2">Keterangan</label>
+          </div>
+        </div>
+      </div>
       @endif
     </form>
   </div>
