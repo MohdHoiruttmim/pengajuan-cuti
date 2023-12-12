@@ -19,11 +19,13 @@ class ProdiController extends Controller
         $diproses = Pengajuan::whereHas('mahasiswa', function($query) use ($id) {
             $query->where('id_prodi', $id)
             ->where('status', 'Diproses');
-        })->get();
+        })->count();
 
         dd($diproses);
         return view('prodi.index', [
-            'title' => 'Prodi Dashboard'
+            'title' => 'Prodi Dashboard',
+            'pengajuan' => $pengajuan,
+            'diproses' => $diproses
         ]);
     }
 
