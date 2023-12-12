@@ -21,7 +21,6 @@ class ProdiController extends Controller
             ->where('status', 'Diproses');
         })->count();
 
-        dd($diproses);
         return view('prodi.index', [
             'title' => 'Prodi Dashboard',
             'pengajuan' => $pengajuan,
