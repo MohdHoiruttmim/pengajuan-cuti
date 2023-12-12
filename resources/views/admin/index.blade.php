@@ -121,7 +121,7 @@
             <td>{{ $p->mahasiswa->fakultas->nama }}</td>
             <td>{{ $p->mahasiswa->prodi->nama }}</td>
             <td>
-              @if ($p->status != 'Selesai')
+              @if ($p->status != 'Diterima')
               <span class="badge badge-lg" style="width: 70%; background: #FF8C00;">{{ $p->status }}</span>
               @else
               <span class="badge badge-lg" style="width: 70%; background: #00cc88;">Selesai</span>

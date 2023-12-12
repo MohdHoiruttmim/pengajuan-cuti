@@ -89,4 +89,15 @@ class AdminController extends Controller
             'pengajuan' => $pengajuan,
         ]);
     }
+
+    public function tolak(Request $request, $id)
+    {
+        $pengajuan = Pengajuan::find($id);
+
+        $pengajuan->status = 'Ditolak';
+        $pengajuan->keterangan_ditolak = $request->keterangan;
+        $pengajuan->save();
+
+        return redirect()->back();
+    }
 }

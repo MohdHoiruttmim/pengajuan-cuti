@@ -15,7 +15,7 @@
           <div class="row">
             <div class="col">
               <span class="h6 font-semibold text-muted text-sm d-block mb-2">Pengajuan Permohonan Cuti</span>
-              <span class="h4 mb-0 text-muted">0</span>
+              <span class="h4 mb-0 text-muted">{{ $pengajuan }}</span>
             </div>
             <div class="col-auto">
               <div class="icon icon-shape text-white text-lg rounded-circle p-3" style="background: #FF579A;">
@@ -36,7 +36,7 @@
           <div class="row">
             <div class="col">
               <span class="h6 font-semibold text-muted text-sm d-block mb-2">Pengajuan diproses</span>
-              <span class="h4 mb-0 text-muted">0</span>
+              <span class="h4 mb-0 text-muted">{{ $diproses }}</span>
             </div>
             <div class="col-auto">
               <div class="icon icon-shape text-white text-lg rounded-circle p-3" style="background: #FF579A;">

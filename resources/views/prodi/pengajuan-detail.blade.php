@@ -97,6 +97,7 @@
         </ul>
         <label for="floatingPlaintextInput">Berikut dokumen yang terlampir</label>
       </div>
+      @if ($pengajuan->status != 'Ditolak')
       <div class="mb-3 pt-3">
         <div class="col">
           <div class="form-group inputDnD">
@@ -115,6 +116,7 @@
         <input type="submit" class="btn btn-primary m-2" value="Proses Pengajuan">
         <a class="btn btn-danger m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Tolak Pengajuan</a>
       </div>
+      @endif
     </form>
   </div>
 </main>
@@ -128,7 +130,8 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Keterangan Penolakan</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="">
+      <form action="{{ route('tolak', $pengajuan->id) }}" method="POST">
+        @csrf
         <div class="modal-body">
           <textarea name="keterangan" id="keterangan" class="form-control" rows="3"></textarea>
         </div>
