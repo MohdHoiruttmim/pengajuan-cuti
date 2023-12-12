@@ -41,7 +41,7 @@
   <div class="say-down">
     @if($user->pengajuan[$index]->surat_permohonan != null)
     <h3 class="text-center">
-      <a href="{{ $user->pengajuan[$index] }}" class="text-decoration-none text-dark" target="_blank">
+      <a href="{{ $user->pengajuan[$index]->surat_permohonan }}" class="text-decoration-none text-dark" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
           class="bi bi-file-earmark-pdf-fill" viewBox="0 0 16 16">
           <path
