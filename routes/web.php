@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"]);
 
     Route::post('/keterangan/{id}', [AdminController::class, 'keterangan'])->name('surat-keterangan');
+    Route::get('/keterangan/{id}', [AdminController::class, 'keterangan'])->name('surat-keterangan-get');
     Route::post('/batalkan/{id}', [AdminController::class, 'tolak'])->name('tolak');
 
     Route::group(['middleware' => 'checkRole:admin'], function() {
