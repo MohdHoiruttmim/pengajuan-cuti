@@ -97,6 +97,7 @@
         </ul>
         <label for="floatingPlaintextInput">Berikut dokumen yang terlampir</label>
       </div>
+      @if ($pengajuan->status != 'Ditolak')
       <div class="mb-3 pt-3">
         <div class="col">
           <div class="form-group inputDnD">
@@ -115,6 +116,7 @@
         <input type="submit" class="btn btn-primary m-2" value="Proses Pengajuan">
         <a class="btn btn-danger m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Tolak Pengajuan</a>
       </div>
+      @endif
     </form>
   </div>
 </main>
